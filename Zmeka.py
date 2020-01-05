@@ -9,10 +9,17 @@ RED = (255, 0, 0)
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (700, 500)
+size = (551, 551)
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Zmeka")
+# Шрифт
+font = pygame.font.Font(None, 40)
+# Счётчик еды
+score = 0
+
+
+
 def animation():
     body.insert(0,list(head))
     body.pop()
@@ -58,6 +65,9 @@ while not done:
                 sys.exit()
 
     # --- Game logic should go here
+
+    text = font.render("Score: " + str(score), True, WHITE)
+
     if SSx > 11:
         SSx = 11
     if SSx < -11:
@@ -82,7 +92,7 @@ while not done:
     draw_snake(screen)
     animation()
     # --- Drawing code should go here
-
+    screen.blit(text, [0,0])
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
