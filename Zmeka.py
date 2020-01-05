@@ -25,8 +25,9 @@ done = False
 head = [45, 45]
 body = [[45,45],[34,45],[23,45]]
 
-SSx = 0
+SSx = 11
 SSy = 0
+flag_side = "Right"
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
@@ -37,24 +38,38 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
+            if event.key == pygame.K_RIGHT and flag_side != "Left":
+                flag_side = "Right"
                 SSx += 11
                 SSy = 0
-            elif event.key == pygame.K_LEFT:
+            elif event.key == pygame.K_LEFT and flag_side != "Right":
+                flag_side = "Left"
                 SSx -= 11
                 SSy = 0
-            elif event.key == pygame.K_UP:
+            elif event.key == pygame.K_UP and flag_side != "Down":
+                flag_side = "Up"
                 SSx = 0
                 SSy -= 11
-            elif event.key == pygame.K_DOWN:
+            elif event.key == pygame.K_DOWN and flag_side != "Up":
+                flag_side = "Down"
                 SSx = 0
                 SSy += 11
             elif event.key == pygame.K_ESCAPE:
                 sys.exit()
 
     # --- Game logic should go here
+    if SSx > 11:
+        SSx = 11
+    if SSx < -11:
+        SSx = -11
     head[0] = head[0] + SSx
+    if SSy > 11:
+        SSy = 11
+    if SSy < -11:
+        SSy = -11
     head[1] = head[1] + SSy
+
+
     # --- Screen-clearing code goes here
 
     # Here, we clear the screen to white. Don't put other drawing commands
