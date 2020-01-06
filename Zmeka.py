@@ -1,5 +1,6 @@
 import pygame
 import sys
+import random
 # Define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -18,8 +19,6 @@ font = pygame.font.Font(None, 40)
 # Счётчик еды
 score = 0
 
-
-
 def animation():
     body.insert(0,list(head))
     body.pop()
@@ -35,6 +34,10 @@ body = [[45,45],[34,45],[23,45]]
 SSx = 11
 SSy = 0
 flag_side = "Right"
+
+x = random.randrange(0, 551, 11)
+y = random.randrange(0, 551, 11)
+
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
@@ -79,6 +82,10 @@ while not done:
         SSy = -11
     head[1] = head[1] + SSy
 
+    if head[0] == x+1 and head[1] == y+1:
+        score +=1
+        x = random.randrange(0, 551, 11)
+        y = random.randrange(0, 551, 11)
 
     # --- Screen-clearing code goes here
 
@@ -89,6 +96,7 @@ while not done:
     # background image.
     screen.fill(BLACK)
     pygame.draw.rect(screen, GREEN,(head[0],head[1],10,10))
+    pygame.draw.rect(screen, RED, (x+1, y+1, 10, 10))
     draw_snake(screen)
     animation()
     # --- Drawing code should go here
