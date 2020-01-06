@@ -18,7 +18,8 @@ pygame.display.set_caption("Zmeka")
 font = pygame.font.Font(None, 40)
 # Счётчик еды
 score = 0
-
+def eating():
+    body.append(head)
 def animation():
     body.insert(0,list(head))
     body.pop()
@@ -87,15 +88,17 @@ while not done:
     if head[0] < 1:
         head[0] = 541
     if head[1] > 541:
-        head[1] = 1
-    if head[1] < 1:
+        head[1] = 34
+    if head[1] < 34:
         head[1] = 541
 
     if head[0] == x+1 and head[1] == y+1:
         score +=1
         x = random.randrange(0, 541, 11)
         y = random.randrange(33, 541, 11)
-
+        head[0] += 11
+        head[1] += 11
+        eating()
     # --- Screen-clearing code goes here
 
     # Here, we clear the screen to white. Don't put other drawing commands
