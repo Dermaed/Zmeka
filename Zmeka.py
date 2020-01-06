@@ -82,10 +82,19 @@ while not done:
         SSy = -11
     head[1] = head[1] + SSy
 
+    if head[0] > 541:
+        head[0] = 1
+    if head[0] < 1:
+        head[0] = 541
+    if head[1] > 541:
+        head[1] = 1
+    if head[1] < 1:
+        head[1] = 541
+
     if head[0] == x+1 and head[1] == y+1:
         score +=1
-        x = random.randrange(0, 551, 11)
-        y = random.randrange(0, 551, 11)
+        x = random.randrange(0, 541, 11)
+        y = random.randrange(33, 541, 11)
 
     # --- Screen-clearing code goes here
 
