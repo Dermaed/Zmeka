@@ -48,13 +48,18 @@ while not done:
     screen.fill(BLACK)
 
     # --- Drawing code should go here
-    grid = []
+    row1 = [10,10]
+
+    floop = []
     for row in range(10):
-        grid.append([])
-        pygame.draw.rect(screen, WHITE,(x,y, 10,10))
+        row1[0] += 11
+        row1[1] = 10
+        pygame.draw.rect(screen, WHITE,(row1[0],row1[1],10,10))
+        floop.append([row])
         for column in range(10):
-            grid[row].append(0)
-            pygame.draw.rect(screen, WHITE,(x,y, 10,10))
+            pygame.draw.rect(screen, WHITE,(row1[0],row1[1],10,10))
+            floop.append([row])
+            row1[1] += 11
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
