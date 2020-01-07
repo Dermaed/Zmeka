@@ -1,6 +1,6 @@
 import pygame
 import sys
-import random
+
 # Define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -10,14 +10,15 @@ RED = (255, 0, 0)
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (551, 551)
+size = (700, 500)
 screen = pygame.display.set_mode(size)
 
-pygame.display.set_caption("Zmeka")
+pygame.display.set_caption("My Game")
+x = 10
+y = 10
 
-
-done = False
 # Loop until the user clicks the close button.
+done = False
 
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
@@ -35,7 +36,6 @@ while not done:
 #            elif event.key == pygame.K_DOWN:
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
-
     # --- Game logic should go here
 
     # --- Screen-clearing code goes here
@@ -48,19 +48,17 @@ while not done:
     screen.fill(BLACK)
 
     # --- Drawing code should go here
-    grid = []
+    row = [10,10]
+    floop = []
     for row in range(10):
-        grid.append([])
-        pygame.draw.rect(screen, WHITE,(x,y, 10,10))
-        for column in range(10):
-            grid[row].append(0)
-            pygame.draw.rect(screen, WHITE,(x,y, 10,10))
+        pygame.draw.rect(screen, WHITE,(x,y,10,10))
+        floop.append([row])
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
     # --- Limit to 60 frames per second
-    clock.tick(12)
+    clock.tick(60)
 
 # Close the window and quit.
 pygame.quit()
