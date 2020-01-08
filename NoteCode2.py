@@ -1,0 +1,11 @@
+import math
+#print(17.5 // 2)
+#print(17.5 / 2)
+print(math.fmod(3, 2))
+print(math.fmod(5, 2))
+print(math.fmod(7, 2))
+print(math.fmod(9, 2))
+print(math.fmod(2, 2))
+print(math.fmod(4, 2))
+print(math.fmod(6, 2))
+print(math.fmod(8, 2))

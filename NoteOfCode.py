@@ -1,16 +1,20 @@
 import pygame
 import sys
+import math
 
 # Define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+field1 = (22, 64, 54)
+field2 = (85, 96, 32)
+
 
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (700, 500)
+size = (460, 460)
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("My Game")
@@ -48,18 +52,22 @@ while not done:
     screen.fill(BLACK)
 
     # --- Drawing code should go here
-    row1 = [10,10]
-
+    row1 = [0,0]
     floop = []
-    for row in range(10):
-        row1[0] += 11
+    for row in range(40):
+        row1[0] += 10
         row1[1] = 10
-        pygame.draw.rect(screen, WHITE,(row1[0],row1[1],10,10))
-        floop.append([row])
-        for column in range(10):
-            pygame.draw.rect(screen, WHITE,(row1[0],row1[1],10,10))
+        h = row1[0]/2
+        for column in range(40):
+            pygame.draw.rect(screen, field2,(row1[0],row1[1],10,10))
+            if math.fmod(row, 2) == 0:
+                pygame.draw.rect(screen, field1,(row1[0],row1[1],10,10))
+            if math.fmod(column, 2) == 1:
+                pygame.draw.rect(screen, field1,(row1[0],row1[1],10,10))
+            if math.fmod(row, 2) == 0 and math.fmod(column, 2) == 1:
+                pygame.draw.rect(screen, field2,(row1[0],row1[1],10,10))
             floop.append([row])
-            row1[1] += 11
+            row1[1] += 10
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()

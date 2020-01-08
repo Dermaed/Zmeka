@@ -51,12 +51,12 @@ while not done:
     row1 = [10,10]
 
     floop = []
-    for row in range(10):
+    for row in range(40):
         row1[0] += 11
         row1[1] = 10
         pygame.draw.rect(screen, WHITE,(row1[0],row1[1],10,10))
         floop.append([row])
-        for column in range(10):
+        for column in range(40):
             pygame.draw.rect(screen, WHITE,(row1[0],row1[1],10,10))
             floop.append([row])
             row1[1] += 11
