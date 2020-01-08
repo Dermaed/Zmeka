@@ -14,13 +14,21 @@ field2 = (105, 176, 52)
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (420, 420)
+size = (740,740)
 screen = pygame.display.set_mode(size)
-
 pygame.display.set_caption("My Game")
-x = 10
-y = 10
 
+# Creating Snake
+snake = [82,82]
+goes_side = "Right"
+body = [[82,82],[62,82],[42,82]]
+
+def animation():
+    body.insert(0,list(snake))
+    body.pop()
+def draw_snake():
+    for segment in body:
+        pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1],16,16))
 # Loop until the user clicks the close button.
 done = False
 
@@ -34,14 +42,40 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
         elif event.type == pygame.KEYDOWN:
-#            if event.key == pygame.K_RIGHT:
-#            elif event.key == pygame.K_LEFT:
-#            elif event.key == pygame.K_UP:
-#            elif event.key == pygame.K_DOWN:
+            if event.key == pygame.K_RIGHT:
+                goes_side = "Right"
+                #snake[0] += 20
+            elif event.key == pygame.K_LEFT:
+                goes_side = "Left"
+                #snake[0] -= 20
+            elif event.key == pygame.K_UP:
+                goes_side = "Up"
+                #snake[1] -= 20
+            elif event.key == pygame.K_DOWN:
+                goes_side = "Down"
+                #snake[1] += 20
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
     # --- Game logic should go here
+    if goes_side == "Right":
+        snake[0] += 20
+    if goes_side == "Left":
+        snake[0] -= 20
+    if goes_side == "Up":
+        snake[1] -= 20
+    if goes_side == "Down":
+        snake[1] += 20
 
+
+
+    if snake[0] > 702:
+        snake[0] -= 20
+    if snake[0] < 22:
+        snake[0] += 20
+    if snake[1] > 702:
+        snake[1] -= 20
+    if snake[1] < 22:
+        snake[1] += 20
     # --- Screen-clearing code goes here
 
     # Here, we clear the screen to white. Don't put other drawing commands
@@ -54,26 +88,28 @@ while not done:
     # --- Drawing code should go here
     row1 = [0,0]
     floop = []
-    for row in range(40):
-        row1[0] += 10
-        row1[1] = 10
+    for row in range(35):
+        row1[0] += 20
+        row1[1] = 20
         h = row1[0]/2
-        for column in range(40):
-            pygame.draw.rect(screen, field2,(row1[0],row1[1],10,10))
+        for column in range(35):
+            pygame.draw.rect(screen, field2,(row1[0],row1[1],20,20))
             if math.fmod(row, 2) == 0:
-                pygame.draw.rect(screen, field1,(row1[0],row1[1],10,10))
+                pygame.draw.rect(screen, field1,(row1[0],row1[1],20,20))
             if math.fmod(column, 2) == 1:
-                pygame.draw.rect(screen, field1,(row1[0],row1[1],10,10))
+                pygame.draw.rect(screen, field1,(row1[0],row1[1],20,20))
             if math.fmod(row, 2) == 0 and math.fmod(column, 2) == 1:
-                pygame.draw.rect(screen, field2,(row1[0],row1[1],10,10))
+                pygame.draw.rect(screen, field2,(row1[0],row1[1],20,20))
             floop.append([row])
-            row1[1] += 10
-
+            row1[1] += 20
+    animation()
+    pygame.draw.rect(screen, GREEN, (snake[0], snake[1], 16, 16))
+    draw_snake()
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
     # --- Limit to 60 frames per second
-    clock.tick(60)
+    clock.tick(10)
 
 # Close the window and quit.
 pygame.quit()
