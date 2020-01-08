@@ -7,14 +7,14 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
-field1 = (22, 64, 54)
-field2 = (85, 96, 32)
+field1 = (115, 166, 72)
+field2 = (105, 176, 52)
 
 
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (460, 460)
+size = (420, 420)
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("My Game")
