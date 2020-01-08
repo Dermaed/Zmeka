@@ -1,6 +1,7 @@
 import pygame
 import sys
 import random
+import math
 # Define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -12,7 +13,7 @@ field2 = (105, 176, 52)
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (551, 551)
+size = (420, 420)
 screen = pygame.display.set_mode(size)
 
 pygame.display.set_caption("Zmeka")
