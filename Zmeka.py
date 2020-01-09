@@ -1,7 +1,7 @@
 import pygame
 import sys
-import random
 import math
+
 # Define some colors
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
@@ -15,15 +15,21 @@ pygame.init()
 # Set the width and height of the screen [width, height]
 size = (740,740)
 screen = pygame.display.set_mode(size)
-
-pygame.display.set_caption("Zmeka")
+pygame.display.set_caption("My Game")
 
 # Creating Snake
-snake = [22,22]
+snake = [82,82]
+goes_side = "Right"
+body = [[82,82],[62,82],[42,82]]
 
-
-done = False
+def animation():
+    body.insert(0,list(snake))
+    body.pop()
+def draw_snake():
+    for segment in body:
+        pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1],16,16))
 # Loop until the user clicks the close button.
+done = False
 
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
@@ -35,18 +41,30 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
         elif event.type == pygame.KEYDOWN:
-            if event.key == pygame.K_RIGHT:
-                snake[0] += 20
-            elif event.key == pygame.K_LEFT:
-                snake[0] -= 20
-            elif event.key == pygame.K_UP:
-                snake[1] -= 20
-            elif event.key == pygame.K_DOWN:
-                snake[1] += 20
+            if event.key == pygame.K_RIGHT and goes_side != "Left":
+                goes_side = "Right"
+                #snake[0] += 20
+            elif event.key == pygame.K_LEFT and goes_side != "Right":
+                goes_side = "Left"
+                #snake[0] -= 20
+            elif event.key == pygame.K_UP and goes_side != "Down":
+                goes_side = "Up"
+                #snake[1] -= 20
+            elif event.key == pygame.K_DOWN and goes_side != "Up":
+                goes_side = "Down"
+                #snake[1] += 20
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
-
     # --- Game logic should go here
+    if goes_side == "Right":
+        snake[0] += 20
+    if goes_side == "Left":
+        snake[0] -= 20
+    if goes_side == "Up":
+        snake[1] -= 20
+    if goes_side == "Down":
+        snake[1] += 20
+
     if snake[0] > 702:
         snake[0] -= 20
     if snake[0] < 22:
@@ -81,13 +99,14 @@ while not done:
                 pygame.draw.rect(screen, field2,(row1[0],row1[1],20,20))
             floop.append([row])
             row1[1] += 20
-
+    animation()
     pygame.draw.rect(screen, GREEN, (snake[0], snake[1], 16, 16))
+    draw_snake()
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
     # --- Limit to 60 frames per second
-    clock.tick(12)
+    clock.tick(10)
 
 # Close the window and quit.
 pygame.quit()
