@@ -9,6 +9,7 @@ BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
 RED = (255, 0, 0)
+BLUE = (0,0,255)
 field1 = (105, 166, 52)
 field2 = (105, 176, 52)
 
@@ -18,6 +19,10 @@ pygame.init()
 size = (740,740)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Game")
+
+font = pygame.font.Font(None, 40)
+# Счётчик голов
+Score = 0
 
 # Creating Snake
 snake = [82,82]
@@ -37,6 +42,9 @@ done = False
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
+# Creating Food
+food0 = (random.randrange(0,35)*20)+20
+food1 = (random.randrange(0,35)*20)+20
 # -------- Main Program Loop -----------
 while not done:
     # --- Main event loop
@@ -84,7 +92,9 @@ while not done:
 
     # If you want a background image, replace this clear with blit'ing the
     # background image.
+#    text = font.render(str(Score), True, BLUE)
     screen.fill(BLACK)
+#    screen.blit(text, 0, 0)
 
     # --- Drawing code should go here
     row1 = [0,0]
@@ -104,7 +114,12 @@ while not done:
     animation()
     pygame.draw.rect(screen, GREEN, (snake[0], snake[1], 16, 16))
     draw_snake()
-
+    pygame.draw.rect(screen, RED, (food0+2, food1+2, 16, 16))
+    if food0 < snake[0] < food0+20 and food1 < snake[1] < food1+20:
+        Score += 1
+        print(Score)
+        food0 = (random.randrange(0,35)*20)+20
+        food1 = (random.randrange(0,35)*20)+20
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
