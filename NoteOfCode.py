@@ -8,6 +8,7 @@ import random
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
+
 RED = (255, 0, 0)
 BLUE = (0,0,255)
 field1 = (105, 166, 52)
@@ -54,16 +55,12 @@ while not done:
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT and goes_side != "Left":
                 goes_side = "Right"
-                #snake[0] += 20
             elif event.key == pygame.K_LEFT and goes_side != "Right":
                 goes_side = "Left"
-                #snake[0] -= 20
             elif event.key == pygame.K_UP and goes_side != "Down":
                 goes_side = "Up"
-                #snake[1] -= 20
             elif event.key == pygame.K_DOWN and goes_side != "Up":
                 goes_side = "Down"
-                #snake[1] += 20
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
     # --- Game logic should go here
@@ -85,6 +82,7 @@ while not done:
     if snake[1] < 22:
         snake[1] += 20
 
+
     # --- Screen-clearing code goes here
 
     # Here, we clear the screen to white. Don't put other drawing commands
@@ -92,9 +90,7 @@ while not done:
 
     # If you want a background image, replace this clear with blit'ing the
     # background image.
-#    text = font.render(str(Score), True, BLUE)
     screen.fill(BLACK)
-#    screen.blit(text, 0, 0)
 
     # --- Drawing code should go here
     row1 = [0,0]
@@ -120,6 +116,7 @@ while not done:
         print(Score)
         food0 = (random.randrange(0,35)*20)+20
         food1 = (random.randrange(0,35)*20)+20
+        body.append(body[0])
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
