@@ -24,8 +24,7 @@ font = pygame.font.Font(None, 40)
 # Счётчик голов
 Score = -1
 NewScore = 0
-xNS = 0
-
+xNS = 1
 # Creating Snake
 snake = [82,82]
 goes_side = "Right"
@@ -113,20 +112,21 @@ while not done:
     draw_snake()
     pygame.draw.rect(screen, RED, (food0+2, food1+2, 16, 16))
     if food0 < snake[0] < food0+20 and food1 < snake[1] < food1+20:
-        Score += 1
         NewScore += 1
         print(NewScore)
         food0 = (random.randrange(0,35)*20)+20
         food1 = (random.randrange(0,35)*20)+20
         body.append(body[0])
-    if NewScore > Score :
         xNS += 1
-        pygame.draw.rect(screen, BLUE, (20,735,xNS,15))
+    pygame.draw.rect(screen, BLUE, (20,735,xNS,15))
+    if xNS > 4:
+        print("You win!")
+        sys.exit()
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
-    # --- Limit to 10 frames per second
+    # --- Limit to 60 frames per second
     clock.tick(10)
 
 # Close the window and quit.
