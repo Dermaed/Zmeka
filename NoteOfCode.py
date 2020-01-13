@@ -8,7 +8,6 @@ import random
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
-
 RED = (255, 0, 0)
 BLUE = (0,0,255)
 field1 = (105, 166, 52)
@@ -17,13 +16,14 @@ field2 = (105, 176, 52)
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (740,740)
+size = (740,760)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Game")
 
 font = pygame.font.Font(None, 40)
 # Счётчик голов
-Score = 0
+Score = -1
+NewScore = 0
 
 # Creating Snake
 snake = [82,82]
@@ -113,10 +113,13 @@ while not done:
     pygame.draw.rect(screen, RED, (food0+2, food1+2, 16, 16))
     if food0 < snake[0] < food0+20 and food1 < snake[1] < food1+20:
         Score += 1
-        print(Score)
+        NewScore += 1
+        print(NewScore)
         food0 = (random.randrange(0,35)*20)+20
         food1 = (random.randrange(0,35)*20)+20
         body.append(body[0])
+    if NewScore > Score:
+        pygame.draw.rect(screen, BLUE, (20,750,1,10))
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
