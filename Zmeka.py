@@ -1,8 +1,8 @@
+# import all libraries which are uses
 import pygame
 import sys
 import math
 import random
-
 
 # Define some colors
 BLACK = (0, 0, 0)
@@ -16,19 +16,23 @@ field2 = (105, 176, 52)
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (740,740)
+size = (740,760)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Game")
 
-font = pygame.font.Font(None, 40)
-# Счётчик голов
-Score = 0
+# Creating Ponits
+NewScore = 0
+xNS = 1
 
 # Creating Snake
+# Head
 snake = [82,82]
+# Start direction
 goes_side = "Right"
+# body
 body = [[82,82],[62,82],[42,82]]
 
+# Creating logic Body of snake
 def animation():
     body.insert(0,list(snake))
     body.pop()
@@ -51,22 +55,20 @@ while not done:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             done = True
+            # Control of snake
         elif event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT and goes_side != "Left":
                 goes_side = "Right"
-                #snake[0] += 20
             elif event.key == pygame.K_LEFT and goes_side != "Right":
                 goes_side = "Left"
-                #snake[0] -= 20
             elif event.key == pygame.K_UP and goes_side != "Down":
                 goes_side = "Up"
-                #snake[1] -= 20
             elif event.key == pygame.K_DOWN and goes_side != "Up":
                 goes_side = "Down"
-                #snake[1] += 20
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
     # --- Game logic should go here
+    # Where snake looks, there snake goes
     if goes_side == "Right":
         snake[0] += 20
     if goes_side == "Left":
@@ -75,7 +77,7 @@ while not done:
         snake[1] -= 20
     if goes_side == "Down":
         snake[1] += 20
-
+    # Here i created cell for snake
     if snake[0] > 702:
         snake[0] -= 20
     if snake[0] < 22:
@@ -84,7 +86,6 @@ while not done:
         snake[1] -= 20
     if snake[1] < 22:
         snake[1] += 20
-
     # --- Screen-clearing code goes here
 
     # Here, we clear the screen to white. Don't put other drawing commands
@@ -92,11 +93,12 @@ while not done:
 
     # If you want a background image, replace this clear with blit'ing the
     # background image.
-#    text = font.render(str(Score), True, BLUE)
     screen.fill(BLACK)
-#    screen.blit(text, 0, 0)
 
     # --- Drawing code should go here
+    # Floop of field where snake goes
+    # Actually i don't know how it's to explain but if you
+    # interesting in this, look at the code down below =)
     row1 = [0,0]
     for row in range(35):
         row1[0] += 20
@@ -111,15 +113,31 @@ while not done:
             if math.fmod(row, 2) == 0 and math.fmod(column, 2) == 1:
                 pygame.draw.rect(screen, field2,(row1[0],row1[1],20,20))
             row1[1] += 20
+    # Body trucking head
     animation()
+    # Drawing Head of snake
     pygame.draw.rect(screen, GREEN, (snake[0], snake[1], 16, 16))
+    # Function drawing body of snake
     draw_snake()
+    # Drawing food
     pygame.draw.rect(screen, RED, (food0+2, food1+2, 16, 16))
+    # Condition of eating food
     if food0 < snake[0] < food0+20 and food1 < snake[1] < food1+20:
-        Score += 1
-        print(Score)
+        # Score + 1
+        NewScore += 1
+        print(NewScore)
+        # Random food everytime when snake get food
         food0 = (random.randrange(0,35)*20)+20
         food1 = (random.randrange(0,35)*20)+20
+        body.append(body[0])
+        xNS += 1
+        # Score line
+    pygame.draw.rect(screen, BLUE, (20,735,xNS,15))
+    # if xNS get 100 points write "You win!" and exit the game
+    if xNS > 100:
+        print("You win!")
+        sys.exit()
+
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
