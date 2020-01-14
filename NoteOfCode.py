@@ -31,14 +31,15 @@ snake = [82,82]
 goes_side = "Right"
 # body
 body = [[82,82],[62,82],[42,82]]
-
+segment = []
 # Creating logic Body of snake
 def animation():
     body.insert(0,list(snake))
     body.pop()
-def draw_snake():
-    for segment in body:
-        pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1],16,16))
+# DELETED this code i wrote in Dreawing code DELETED
+    #def draw_snake():
+    #    for segment in body:
+    #        pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1],16,16))
 
 # Loop until the user clicks the close button.
 done = False
@@ -47,8 +48,8 @@ done = False
 clock = pygame.time.Clock()
 
 # Creating Food
-food0 = (random.randrange(0,35)*20)+20
-food1 = (random.randrange(0,35)*20)+20
+food0 = (random.randrange(0,20)*20)+20
+food1 = (random.randrange(0,20)*20)+20
 # -------- Main Program Loop -----------
 while not done:
     # --- Main event loop
@@ -78,14 +79,20 @@ while not done:
     if goes_side == "Down":
         snake[1] += 20
     # Here i created cell for snake
-    if snake[0] > 702:
+    if snake[0] > 402:
         snake[0] -= 20
     if snake[0] < 22:
         snake[0] += 20
-    if snake[1] > 702:
+    if snake[1] > 402:
         snake[1] -= 20
     if snake[1] < 22:
         snake[1] += 20
+
+    # ---- logic of Clash head and body
+    for k in body:
+        if k[0] == snake[0] and k[1] == snake[1]:
+            print("You lose!")
+            sys.exit()
     # --- Screen-clearing code goes here
 
     # Here, we clear the screen to white. Don't put other drawing commands
@@ -100,11 +107,11 @@ while not done:
     # Actually i don't know how it's to explain but if you
     # interesting in this, look at the code down below =)
     row1 = [0,0]
-    for row in range(35):
+    for row in range(20):
         row1[0] += 20
         row1[1] = 20
         h = row1[0]/2
-        for column in range(35):
+        for column in range(20):
             pygame.draw.rect(screen, field2,(row1[0],row1[1],20,20))
             if math.fmod(row, 2) == 0:
                 pygame.draw.rect(screen, field1,(row1[0],row1[1],20,20))
@@ -117,8 +124,9 @@ while not done:
     animation()
     # Drawing Head of snake
     pygame.draw.rect(screen, GREEN, (snake[0], snake[1], 16, 16))
-    # Function drawing body of snake
-    draw_snake()
+    # Drawing body of snake
+    for segment in body:
+        pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1],16,16))
     # Drawing food
     pygame.draw.rect(screen, RED, (food0+2, food1+2, 16, 16))
     # Condition of eating food
@@ -127,8 +135,8 @@ while not done:
         NewScore += 1
         print(NewScore)
         # Random food everytime when snake get food
-        food0 = (random.randrange(0,35)*20)+20
-        food1 = (random.randrange(0,35)*20)+20
+        food0 = (random.randrange(0,20)*20)+20
+        food1 = (random.randrange(0,20)*20)+20
         body.append(body[0])
         xNS += 1
         # Score line
