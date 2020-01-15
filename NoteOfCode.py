@@ -16,7 +16,7 @@ field2 = (105, 176, 52)
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (740,760)
+size = (455,440)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Game")
 
@@ -93,9 +93,13 @@ while not done:
         if k[0] == snake[0] and k[1] == snake[1]:
             print("You lose!")
             sys.exit()
+    for l in body:
+        if l[0] == food0+2 and l[1] == food1+2:
+            food0 = (random.randrange(0,20)*20)+20
+            food1 = (random.randrange(0,20)*20)+20
     # --- Screen-clearing code goes here
 
-    # Here, we clear the screen to white. Don't put other drawing commands
+    # Here, we clear the screen to Black. Don't put other drawing commands
     # above this, or they will be erased with this command.
 
     # If you want a background image, replace this clear with blit'ing the
@@ -105,7 +109,7 @@ while not done:
     # --- Drawing code should go here
     # Floop of field where snake goes
     # Actually i don't know how it's to explain but if you
-    # interesting in this, look at the code down below =)
+    # interesting in this, look at the code down below =)(meme)
     row1 = [0,0]
     for row in range(20):
         row1[0] += 20
@@ -140,7 +144,7 @@ while not done:
         body.append(body[0])
         xNS += 1
         # Score line
-    pygame.draw.rect(screen, BLUE, (20,735,xNS,15))
+    pygame.draw.rect(screen, BLUE, (20,425,xNS,15))
     # if xNS get 100 points write "You win!" and exit the game
     if xNS > 100:
         print("You win!")
