@@ -52,6 +52,21 @@ head_left = pygame.image.load('pictures/Head/Head-left.png').convert()
 head_up = pygame.image.load('pictures/Head/Head-up.png').convert()
 head_down = pygame.image.load('pictures/Head/Head-down.png').convert()
 
+body1 = pygame.image.load('Body/Body1.png').convert()
+body2 = pygame.image.load('Body/Body2.png').convert()
+body3 = pygame.image.load('Body/Body3.png').convert()
+body4 = pygame.image.load('Body/Body4.png').convert()
+body5 = pygame.image.load('Body/Body5.png').convert()
+body6 = pygame.image.load('Body/Body6.png').convert()
+body7 = pygame.image.load('Body/Body7.png').convert()
+body8 = pygame.image.load('Body/Body8.png').convert()
+body9 = pygame.image.load('Body/Body9.png').convert()
+body10 = pygame.image.load('Body/Body10.png').convert()
+body11 = pygame.image.load('Body/Body11.png').convert()
+body12 = pygame.image.load('Body/Body12.png').convert()
+body13 = pygame.image.load('Body/Body13.png').convert()
+body14 = pygame.image.load('Body/Body14.png').convert()
+
 
 # Creating Food
 food0 = (random.randrange(0,20)*20)+20
