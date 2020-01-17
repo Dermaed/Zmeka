@@ -47,6 +47,12 @@ done = False
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
+head_right = pygame.image.load('pictures/Head/Head_right').convert()
+head_left = pygame.image.load('pictures/Head/Head_left').convert()
+head_up = pygame.image.load('pictures/Head/Head_up').convert()
+head_down = pygame.image.load('pictures/Head/Head_down').convert()
+
+
 # Creating Food
 food0 = (random.randrange(0,20)*20)+20
 food1 = (random.randrange(0,20)*20)+20
