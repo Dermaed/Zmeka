@@ -47,10 +47,10 @@ done = False
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
 
-head_right = pygame.image.load('pictures/Head/Head_right').convert()
-head_left = pygame.image.load('pictures/Head/Head_left').convert()
-head_up = pygame.image.load('pictures/Head/Head_up').convert()
-head_down = pygame.image.load('pictures/Head/Head_down').convert()
+head_right = pygame.image.load('pictures/Head/Head-right.png').convert()
+head_left = pygame.image.load('pictures/Head/Head-left.png').convert()
+head_up = pygame.image.load('pictures/Head/Head-up.png').convert()
+head_down = pygame.image.load('pictures/Head/Head-down.png').convert()
 
 
 # Creating Food
@@ -133,6 +133,7 @@ while not done:
     # Body trucking head
     animation()
     # Drawing Head of snake
+
     pygame.draw.rect(screen, GREEN, (snake[0], snake[1], 16, 16))
     # Drawing body of snake
     for segment in body:
@@ -156,6 +157,14 @@ while not done:
         print("You win!")
         sys.exit()
 
+    if goes_side == "Right":
+        screen.blit(head_right, (snake[0], snake[1]))
+    if goes_side == "Left":
+        screen.blit(head_left, (snake[0], snake[1]))
+    if goes_side == "Up":
+        screen.blit(head_up, (snake[0], snake[1]))
+    if goes_side == "Down":
+        screen.blit(head_down, (snake[0], snake[1]))
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
