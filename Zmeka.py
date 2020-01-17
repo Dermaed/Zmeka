@@ -16,7 +16,7 @@ field2 = (105, 176, 52)
 pygame.init()
 
 # Set the width and height of the screen [width, height]
-size = (740,760)
+size = (455,440)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Game")
 
@@ -46,6 +46,43 @@ done = False
 
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
+
+head_right = pygame.image.load('pictures/Head/Head-right.png').convert()
+head_left = pygame.image.load('pictures/Head/Head-left.png').convert()
+head_up = pygame.image.load('pictures/Head/Head-up.png').convert()
+head_down = pygame.image.load('pictures/Head/Head-down.png').convert()
+
+body1 = pygame.image.load('pictures/Body/Body1.png').convert()
+body2 = pygame.image.load('pictures/Body/Body2.png').convert()
+body3 = pygame.image.load('pictures/Body/Body3.png').convert()
+body4 = pygame.image.load('pictures/Body/Body4.png').convert()
+body5 = pygame.image.load('pictures/Body/Body5.png').convert()
+body6 = pygame.image.load('pictures/Body/Body6.png').convert()
+body7 = pygame.image.load('pictures/Body/Body7.png').convert()
+body8 = pygame.image.load('pictures/Body/Body8.png').convert()
+body9 = pygame.image.load('pictures/Body/Body9.png').convert()
+body10 = pygame.image.load('pictures/Body/Body10.png').convert()
+body11 = pygame.image.load('pictures/Body/Body11.png').convert()
+body12 = pygame.image.load('pictures/Body/Body12.png').convert()
+body13 = pygame.image.load('pictures/Body/Body13.png').convert()
+body14 = pygame.image.load('pictures/Body/Body14.png').convert()
+
+i = random.randrange(0,14)
+#if i == 1:
+    #screen.blit(len(body[]))
+#if i == 2:
+#if i == 3:
+#if i == 4:
+#if i == 5:
+#if i == 6:
+#if i == 7:
+#if i == 8:
+#if i == 9:
+#if i == 10:
+#if i == 11:
+#if i == 12:
+#if i == 13:
+#if i == 14:
 
 # Creating Food
 food0 = (random.randrange(0,20)*20)+20
@@ -93,9 +130,13 @@ while not done:
         if k[0] == snake[0] and k[1] == snake[1]:
             print("You lose!")
             sys.exit()
+    for l in body:
+        if l[0] == food0+2 and l[1] == food1+2:
+            food0 = (random.randrange(0,20)*20)+20
+            food1 = (random.randrange(0,20)*20)+20
     # --- Screen-clearing code goes here
 
-    # Here, we clear the screen to white. Don't put other drawing commands
+    # Here, we clear the screen to Black. Don't put other drawing commands
     # above this, or they will be erased with this command.
 
     # If you want a background image, replace this clear with blit'ing the
@@ -105,7 +146,7 @@ while not done:
     # --- Drawing code should go here
     # Floop of field where snake goes
     # Actually i don't know how it's to explain but if you
-    # interesting in this, look at the code down below =)
+    # interesting in this, look at the code down below =)(meme)
     row1 = [0,0]
     for row in range(20):
         row1[0] += 20
@@ -123,6 +164,7 @@ while not done:
     # Body trucking head
     animation()
     # Drawing Head of snake
+
     pygame.draw.rect(screen, GREEN, (snake[0], snake[1], 16, 16))
     # Drawing body of snake
     for segment in body:
@@ -139,13 +181,23 @@ while not done:
         food1 = (random.randrange(0,20)*20)+20
         body.append(body[0])
         xNS += 1
+        j = len(body)
+        print(j)
         # Score line
-    pygame.draw.rect(screen, BLUE, (20,735,xNS,15))
+    pygame.draw.rect(screen, BLUE, (20,425,xNS,15))
     # if xNS get 100 points write "You win!" and exit the game
     if xNS > 100:
         print("You win!")
         sys.exit()
 
+    if goes_side == "Right":
+        screen.blit(head_right, (snake[0], snake[1]))
+    if goes_side == "Left":
+        screen.blit(head_left, (snake[0], snake[1]))
+    if goes_side == "Up":
+        screen.blit(head_up, (snake[0], snake[1]))
+    if goes_side == "Down":
+        screen.blit(head_down, (snake[0], snake[1]))
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
 
