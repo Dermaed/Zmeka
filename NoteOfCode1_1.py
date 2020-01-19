@@ -34,7 +34,7 @@ class Snake():
         self.direction = "Right"
         self.image_pth = pygame.image.load(image_pth).convert()
 
-    def move(direction): #
+    def move():
         if event.type == pygame.KEYDOWN:
             if event.key == pygame.K_RIGHT and goes_side != "Left":
                 goes_side = "Right"
@@ -45,13 +45,13 @@ class Snake():
             elif event.key == pygame.K_DOWN and goes_side != "Up":
                 goes_side = "Down"
 
-    def hit_body(): #
+    def hit_body():
         for hit in body:
             if hit[0] == head[0] and hit[1] == head[1]:
                 print("You lose!")
                 sys.exit()
 
-    def logic_move(): #
+    def logic_move():
         if goes_side == "Right":
             head[0] += 20
         if goes_side == "Left":
@@ -61,7 +61,7 @@ class Snake():
         if goes_side == "Down":
             head[1] += 20
 
-    def field_snake(): #
+    def field_snake():
         if head[0] > 402:
             head[0] -= 20
         if head[0] < 22:
@@ -71,12 +71,11 @@ class Snake():
         if head[1] < 22:
             head[1] += 20
 
-    def animation(): #
+    def animation():
         body.insert(0, list(head))
         body.pop()
 
-    def draw_body(): #
-        segment = []
+    def draw_body():
         for segment in body:
             pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1], 16, 16))
 
@@ -91,9 +90,9 @@ segment = []
 
 
 # Creating logic Body of snake
-#def animation():
- #   body.insert(0, list(head))
-   # body.pop()
+def animation():
+    body.insert(0, list(head))
+    body.pop()
 
 
 # DELETED this code i wrote in Dreawing code DELETED
@@ -122,13 +121,12 @@ while not done:
         if event.type == pygame.QUIT:
             done = True
             # Control of snake
-            snake.move("Right")
+
             if event.key == pygame.K_ESCAPE:
                 sys.exit()
     # --- Game logic should go here
     # Where snake looks, there snake goes
-    snake.logic_move()
-    snake.field_snake()
+
     # ---- logic of Clash head and body
     snake.hit_body()
     for food_spawn in body:
@@ -165,7 +163,7 @@ while not done:
     # Body trucking head
     animation()
     # Drawing Head of snake
-    snake.draw_body()
+
     pygame.draw.rect(screen, GREEN, (head[0], head[1], 16, 16))
     # Drawing body of snake
     for segment in body:
