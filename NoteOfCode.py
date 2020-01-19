@@ -40,48 +40,48 @@ class Snake():
             # --- Main event loop
             for event in pygame.event.get():
                 if event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RIGHT and goes_side != "Left":
-                        goes_side = "Right"
-                    elif event.key == pygame.K_LEFT and goes_side != "Right":
-                        goes_side = "Left"
-                    elif event.key == pygame.K_UP and goes_side != "Down":
-                        goes_side = "Up"
-                    elif event.key == pygame.K_DOWN and goes_side != "Up":
-                        goes_side = "Down"
+                    if event.key == pygame.K_RIGHT and self.direction != "Left":
+                        self.direction = "Right"
+                    elif event.key == pygame.K_LEFT and self.direction != "Right":
+                        self.direction = "Left"
+                    elif event.key == pygame.K_UP and self.direction != "Down":
+                        self.direction = "Up"
+                    elif event.key == pygame.K_DOWN and self.direction != "Up":
+                        self.direction = "Down"
 
     def hit_body(self): #
-        for hit in body:
-            if hit[0] == head[0] and hit[1] == head[1]:
+        for hit in self.body:
+            if hit[0] == self.head[0] and hit[1] == self.head[1]:
                 print("You lose!")
                 sys.exit()
 
     def logic_move(self): #
-        if goes_side == "Right":
-            head[0] += 20
-        if goes_side == "Left":
-            head[0] -= 20
-        if goes_side == "Up":
-            head[1] -= 20
-        if goes_side == "Down":
-            head[1] += 20
+        if self.direction == "Right":
+            self.head[0] += 20
+        if self.direction == "Left":
+            self.head[0] -= 20
+        if self.direction == "Up":
+            self.head[1] -= 20
+        if self.direction == "Down":
+            self.head[1] += 20
 
     def field_snake(self): #
-        if head[0] > 402:
-            head[0] -= 20
-        if head[0] < 22:
-            head[0] += 20
-        if head[1] > 402:
-            head[1] -= 20
-        if head[1] < 22:
-            head[1] += 20
+        if self.head[0] > 402:
+            self.head[0] -= 20
+        if self.head[0] < 22:
+            self.head[0] += 20
+        if self.head[1] > 402:
+            self.head[1] -= 20
+        if self.head[1] < 22:
+            self.head[1] += 20
 
     def animation(self): #
-        body.insert(0, list(head))
-        body.pop()
+        self.body.insert(0, list(self.head))
+        self.body.pop()
 
     def draw_body(self): #
         segment = []
-        for segment in body:
+        for segment in self.body:
             pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1], 16, 16))
 
 

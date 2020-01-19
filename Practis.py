@@ -12,12 +12,12 @@ class Dog():
     def bark(self):
         print("Brak!")
     def stats(self):
-        print("Dog wight,", wight)
-        print("Dog height,", height)
+        print("Dog wight,", self.wight)
+        print("Dog height,", self.height)
         print("Dog is,",type)
     def restatus(self):
-        wight += 20
-        height += 20
+        self.wight += 20
+        self.height += 20
 dog = Dog(14, 26, "Corgi")
 dog.bark()
 dog.stats()
