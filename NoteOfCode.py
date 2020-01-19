@@ -75,6 +75,16 @@ class Snake():
         if self.head[1] < 22:
             self.head[1] += 20
 
+    def sprites(self):
+        if self.direction == "Right":
+            screen.blit(head_right, (self.head[0], self.head[1]))
+        if self.direction == "Left":
+            screen.blit(head_left, (self.head[0], self.head[1]))
+        if self.direction == "Up":
+            screen.blit(head_up, (self.head[0], self.head[1]))
+        if self.direction == "Down":
+            screen.blit(head_down, (self.head[0], self.head[1]))
+
     def animation(self): #
         self.body.insert(0, list(self.head))
         self.body.pop()
@@ -194,14 +204,7 @@ while not done:
         print("You win!")
         sys.exit()
 
-    if goes_side == "Right":
-        screen.blit(head_right, (head[0], head[1]))
-    if goes_side == "Left":
-        screen.blit(head_left, (head[0], head[1]))
-    if goes_side == "Up":
-        screen.blit(head_up, (head[0], head[1]))
-    if goes_side == "Down":
-        screen.blit(head_down, (head[0], head[1]))
+    snake.sprites()
 
     # --- Go ahead and update the screen with what we've drawn.
     pygame.display.flip()
