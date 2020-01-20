@@ -34,6 +34,8 @@ class Snake():
         self.direction = "Right"
         self.image_pth = pygame.image.load(image_pth).convert()
 
+    def draw_head(self):
+        pygame.draw.rect(screen, GREEN, (self.head[0], self.head[1], 16, 16))
     def move(self): #
         done = False
         while not done:
@@ -85,6 +87,8 @@ class Snake():
         if self.direction == "Down":
             screen.blit(head_down, (self.head[0], self.head[1]))
 
+
+
     def animation(self): #
         self.body.insert(0, list(self.head))
         self.body.pop()
@@ -94,8 +98,21 @@ class Snake():
         for segment in self.body:
             pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1], 16, 16))
 
+class Food():
+    def __init__(self, food_x, food_y):
+        self.food_x = (random.randrange(0, 20) * 20) + 20
+        self.food_y = (random.randrange(0, 20) * 20) + 20
+        # Сделать так чтобы в одном методе использовалось 2 класса
+    def excluding_snake_food(self):
+        for food_spawn in self.body:
+            if food_spawn[0] == food_x + 2 and food_spawn[1] == food_y + 2:
+                food_x = (random.randrange(0, 20) * 20) + 20
+                food_y = (random.randrange(0, 20) * 20) + 20
+
+
 
 snake = Snake("pictures/Head/Head-right.png")
+food = Food((random.randrange(0, 20) * 20) + 20, (random.randrange(0, 20) * 20) + 20)
 #head = [82, 82]
 # Start direction
 #goes_side = "Right"
@@ -145,10 +162,7 @@ while not done:
     snake.field_snake()
     # ---- logic of Clash head and body
     snake.hit_body()
-    for food_spawn in body:
-        if food_spawn[0] == food0 + 2 and food_spawn[1] == food1 + 2:
-            food0 = (random.randrange(0, 20) * 20) + 20
-            food1 = (random.randrange(0, 20) * 20) + 20
+    snake.excluding_snake_food()
     # --- Screen-clearing code goes here
 
     # Here, we clear the screen to Black. Don't put other drawing commands
@@ -179,15 +193,13 @@ while not done:
     # Body trucking head
     snake.animation()
     # Drawing Head of snake
-    snake.draw_body()
-    pygame.draw.rect(screen, GREEN, (head[0], head[1], 16, 16))
+    snake.draw_head()
     # Drawing body of snake
-    for segment in body:
-        pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1], 16, 16))
+    snake.draw_body()
     # Drawing food
     pygame.draw.rect(screen, RED, (food0 + 2, food1 + 2, 16, 16))
     # Condition of eating food
-    if food0 < head[0] < food0 + 20 and food1 < head[1] < food1 + 20:
+    if food0 < head[0] < food0 
         # Score + 1
         NewScore += 1
         print(NewScore)
