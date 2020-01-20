@@ -33,15 +33,18 @@ class Snake():
         self.body = [[82, 82], [62, 82], [42, 82]]
         self.direction = "Right"
         self.image_pth = pygame.image.load(image_pth).convert()
+        self.Score = 0
+        self.done = False
 
     def draw_head(self):
         pygame.draw.rect(screen, GREEN, (self.head[0], self.head[1], 16, 16))
+
+
     def move(self): #
-        done = False
-        while not done:
-            # --- Main event loop
             for event in pygame.event.get():
-                if event.type == pygame.KEYDOWN:
+                if event.type == pygame.QUIT:
+                    self.done = True
+                elif event.type == pygame.KEYDOWN:
                     if event.key == pygame.K_RIGHT and self.direction != "Left":
                         self.direction = "Right"
                     elif event.key == pygame.K_LEFT and self.direction != "Right":
@@ -50,7 +53,8 @@ class Snake():
                         self.direction = "Up"
                     elif event.key == pygame.K_DOWN and self.direction != "Up":
                         self.direction = "Down"
-
+                    elif event.key == pygame.K_ESCAPE:
+                        sys.exit()
     def hit_body(self): #
         for hit in self.body:
             if hit[0] == self.head[0] and hit[1] == self.head[1]:
@@ -90,14 +94,12 @@ class Snake():
     def eating_food(self, food_x, food_y):
         if food_x < self.head[0] < food_x and food_y < self.head[1] < food_y+20:
             # Score + 1
-            NewScore += 1
-            print(NewScore)
+            self.Score += 1
+            print(self.Score)
             # Random food everytime when snake get food
             food_x = (random.randrange(0, 20) * 20) + 20
             food_y = (random.randrange(0, 20) * 20) + 20
             self.body.append(self.body[0])
-            xNS += 1
-            i = random.randrange(0, 14)
             # Score line
 
     def animation(self): #
@@ -113,7 +115,6 @@ class Food():
     def __init__(self, food_x, food_y):
         self.food_x = (random.randrange(0, 20) * 20) + 20
         self.food_y = (random.randrange(0, 20) * 20) + 20
-        # Сделать так чтобы в одном методе использовалось 2 класса
     def excluding_snake_food(self, body):
         for food_spawn in body:
             if food_spawn[0] == self.food_x + 2 and food_spawn[1] == self.food_y + 2:
@@ -145,7 +146,6 @@ food = Food((random.randrange(0, 20) * 20) + 20, (random.randrange(0, 20) * 20) 
 #        pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1],16,16))
 
 # Loop until the user clicks the close button.
-done = False
 
 # Used to manage how fast the screen updates
 clock = pygame.time.Clock()
@@ -156,18 +156,14 @@ head_up = pygame.image.load('pictures/Head/Head-up.png').convert()
 head_down = pygame.image.load('pictures/Head/Head-down.png').convert()
 
 # Creating Food
-food0 = (random.randrange(0, 20) * 20) + 20
-food1 = (random.randrange(0, 20) * 20) + 20
+#food0 = (random.randrange(0, 20) * 20) + 20
+#food1 = (random.randrange(0, 20) * 20) + 20
 # -------- Main Program Loop -----------
-while not done:
+while not snake.done:
     # --- Main event loop
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            done = True
             # Control of snake
-            snake.move()
-            if event.key == pygame.K_ESCAPE:
-                sys.exit()
+    snake.move()
+
     # --- Game logic should go here
     # Where snake looks, there snake goes
     snake.logic_move()
