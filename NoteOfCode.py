@@ -20,11 +20,6 @@ size = (455, 440)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Game")
 
-# Creating Ponits
-NewScore = 0
-xNS = 1
-
-
 # Creating Snake
 # Head
 class Snake():
@@ -33,35 +28,36 @@ class Snake():
         self.body = [[82, 82], [62, 82], [42, 82]]
         self.direction = "Right"
         self.image_pth = pygame.image.load(image_pth).convert()
+        self.line_to_win = 1
         self.Score = 0
         self.done = False
 
     def draw_head(self):
         pygame.draw.rect(screen, GREEN, (self.head[0], self.head[1], 16, 16))
 
+    def move(self):  #
+        for event in pygame.event.get():
+            if event.type == pygame.QUIT:
+                self.done = True
+            elif event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_RIGHT and self.direction != "Left":
+                    self.direction = "Right"
+                elif event.key == pygame.K_LEFT and self.direction != "Right":
+                    self.direction = "Left"
+                elif event.key == pygame.K_UP and self.direction != "Down":
+                    self.direction = "Up"
+                elif event.key == pygame.K_DOWN and self.direction != "Up":
+                    self.direction = "Down"
+                elif event.key == pygame.K_ESCAPE:
+                    sys.exit()
 
-    def move(self): #
-            for event in pygame.event.get():
-                if event.type == pygame.QUIT:
-                    self.done = True
-                elif event.type == pygame.KEYDOWN:
-                    if event.key == pygame.K_RIGHT and self.direction != "Left":
-                        self.direction = "Right"
-                    elif event.key == pygame.K_LEFT and self.direction != "Right":
-                        self.direction = "Left"
-                    elif event.key == pygame.K_UP and self.direction != "Down":
-                        self.direction = "Up"
-                    elif event.key == pygame.K_DOWN and self.direction != "Up":
-                        self.direction = "Down"
-                    elif event.key == pygame.K_ESCAPE:
-                        sys.exit()
-    def hit_body(self): #
+    def hit_body(self):  #
         for hit in self.body:
             if hit[0] == self.head[0] and hit[1] == self.head[1]:
                 print("You lose!")
                 sys.exit()
 
-    def logic_move(self): #
+    def logic_move(self):  #
         if self.direction == "Right":
             self.head[0] += 20
         if self.direction == "Left":
@@ -71,7 +67,7 @@ class Snake():
         if self.direction == "Down":
             self.head[1] += 20
 
-    def field_snake(self): #
+    def field_snake(self):  #
         if self.head[0] > 402:
             self.head[0] -= 20
         if self.head[0] < 22:
@@ -92,7 +88,7 @@ class Snake():
             screen.blit(head_down, (self.head[0], self.head[1]))
 
     def eating_food(self, food_x, food_y):
-        if food_x < self.head[0] < food_x and food_y < self.head[1] < food_y+20:
+        if food_x < self.head[0] < food_x and food_y < self.head[1] < food_y + 20:
             # Score + 1
             self.Score += 1
             print(self.Score)
@@ -100,44 +96,57 @@ class Snake():
             food_x = (random.randrange(0, 20) * 20) + 20
             food_y = (random.randrange(0, 20) * 20) + 20
             self.body.append(self.body[0])
+            self.line_to_win += 1
+
             # Score line
 
-    def animation(self): #
+
+
+    def animation(self):  #
         self.body.insert(0, list(self.head))
         self.body.pop()
 
-    def draw_body(self): #
+    def draw_body(self):  #
         segment = []
         for segment in self.body:
             pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1], 16, 16))
+
 
 class Food():
     def __init__(self, food_x, food_y):
         self.food_x = (random.randrange(0, 20) * 20) + 20
         self.food_y = (random.randrange(0, 20) * 20) + 20
+
     def excluding_snake_food(self, body):
         for food_spawn in body:
             if food_spawn[0] == self.food_x + 2 and food_spawn[1] == self.food_y + 2:
                 self.food_x = (random.randrange(0, 20) * 20) + 20
                 self.food_y = (random.randrange(0, 20) * 20) + 20
+
     def drawing_food(self):
         pygame.draw.rect(screen, RED, (self.food_x + 2, self.food_y + 2, 16, 16))
 
+    def score_to_win(self, l_to_win):
+        pygame.draw.rect(screen, BLUE, (20, 425,l_to_win , 15))
+        # if xNS get 100 points write "You win!" and exit the game
+        if l_to_win > 100:
+            print("You win!")
+            sys.exit()
 
 snake = Snake("pictures/Head/Head-right.png")
 food = Food((random.randrange(0, 20) * 20) + 20, (random.randrange(0, 20) * 20) + 20)
-#head = [82, 82]
+# head = [82, 82]
 # Start direction
-#goes_side = "Right"
+# goes_side = "Right"
 # body
-#body = [[82, 82], [62, 82], [42, 82]]
-#segment = []
+# body = [[82, 82], [62, 82], [42, 82]]
+# segment = []
 
 
 # Creating logic Body of snake
-#def animation():
- #   body.insert(0, list(head))
-   # body.pop()
+# def animation():
+#   body.insert(0, list(head))
+# body.pop()
 
 
 # DELETED this code i wrote in Dreawing code DELETED
@@ -156,12 +165,12 @@ head_up = pygame.image.load('pictures/Head/Head-up.png').convert()
 head_down = pygame.image.load('pictures/Head/Head-down.png').convert()
 
 # Creating Food
-#food0 = (random.randrange(0, 20) * 20) + 20
-#food1 = (random.randrange(0, 20) * 20) + 20
+# food0 = (random.randrange(0, 20) * 20) + 20
+# food1 = (random.randrange(0, 20) * 20) + 20
 # -------- Main Program Loop -----------
 while not snake.done:
     # --- Main event loop
-            # Control of snake
+    # Control of snake
     snake.move()
 
     # --- Game logic should go here
@@ -208,12 +217,7 @@ while not snake.done:
     food.drawing_food()
     # Condition of eating food
     snake.eating_food(food.food_x, food.food_y)
-
-    pygame.draw.rect(screen, BLUE, (20, 425, xNS, 15))
-    # if xNS get 100 points write "You win!" and exit the game
-    if xNS > 100:
-        print("You win!")
-        sys.exit()
+    food.score_to_win(snake.line_to_win)
 
     snake.sprites()
 
