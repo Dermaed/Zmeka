@@ -18,6 +18,13 @@ class Dog():
     def restatus(self):
         self.wight += 20
         self.height += 20
+
+class Food():
+    def __init__(self):
+        self.food_x =
+        self.food_y =
+    def food_creating(self):
+
 dog = Dog(14, 26, "Corgi")
 dog.bark()
 dog.stats()

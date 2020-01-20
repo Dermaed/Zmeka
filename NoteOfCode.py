@@ -87,7 +87,18 @@ class Snake():
         if self.direction == "Down":
             screen.blit(head_down, (self.head[0], self.head[1]))
 
-
+    def eating_food(self, food_x, food_y):
+        if food_x < self.head[0] < food_x and food_y < self.head[1] < food_y+20:
+            # Score + 1
+            NewScore += 1
+            print(NewScore)
+            # Random food everytime when snake get food
+            food_x = (random.randrange(0, 20) * 20) + 20
+            food_y = (random.randrange(0, 20) * 20) + 20
+            self.body.append(self.body[0])
+            xNS += 1
+            i = random.randrange(0, 14)
+            # Score line
 
     def animation(self): #
         self.body.insert(0, list(self.head))
@@ -103,12 +114,13 @@ class Food():
         self.food_x = (random.randrange(0, 20) * 20) + 20
         self.food_y = (random.randrange(0, 20) * 20) + 20
         # Сделать так чтобы в одном методе использовалось 2 класса
-    def excluding_snake_food(self):
-        for food_spawn in self.body:
-            if food_spawn[0] == food_x + 2 and food_spawn[1] == food_y + 2:
-                food_x = (random.randrange(0, 20) * 20) + 20
-                food_y = (random.randrange(0, 20) * 20) + 20
-
+    def excluding_snake_food(self, body):
+        for food_spawn in body:
+            if food_spawn[0] == self.food_x + 2 and food_spawn[1] == self.food_y + 2:
+                self.food_x = (random.randrange(0, 20) * 20) + 20
+                self.food_y = (random.randrange(0, 20) * 20) + 20
+    def drawing_food(self):
+        pygame.draw.rect(screen, RED, (self.food_x + 2, self.food_y + 2, 16, 16))
 
 
 snake = Snake("pictures/Head/Head-right.png")
@@ -162,7 +174,7 @@ while not done:
     snake.field_snake()
     # ---- logic of Clash head and body
     snake.hit_body()
-    snake.excluding_snake_food()
+    food.excluding_snake_food(snake.body)
     # --- Screen-clearing code goes here
 
     # Here, we clear the screen to Black. Don't put other drawing commands
@@ -197,19 +209,10 @@ while not done:
     # Drawing body of snake
     snake.draw_body()
     # Drawing food
-    pygame.draw.rect(screen, RED, (food0 + 2, food1 + 2, 16, 16))
+    food.drawing_food()
     # Condition of eating food
-    if food0 < head[0] < food0 
-        # Score + 1
-        NewScore += 1
-        print(NewScore)
-        # Random food everytime when snake get food
-        food0 = (random.randrange(0, 20) * 20) + 20
-        food1 = (random.randrange(0, 20) * 20) + 20
-        body.append(body[0])
-        xNS += 1
-        i = random.randrange(0, 14)
-        # Score line
+    snake.eating_food(food.food_x, food.food_y)
+
     pygame.draw.rect(screen, BLUE, (20, 425, xNS, 15))
     # if xNS get 100 points write "You win!" and exit the game
     if xNS > 100:
