@@ -190,6 +190,7 @@ while not done:
         print("You win!")
         sys.exit()
 
+
     if goes_side == "Right":
         screen.blit(head_right, (snake[0], snake[1]))
     if goes_side == "Left":

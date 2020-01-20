@@ -20,6 +20,7 @@ size = (455, 440)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Game")
 
+line_to_win = 1
 # Creating Snake
 # Head
 class Snake():
@@ -32,7 +33,7 @@ class Snake():
         self.Score = 0
         self.done = False
 
-    def draw_head(self):
+    def draw_head(self): #
         pygame.draw.rect(screen, GREEN, (self.head[0], self.head[1], 16, 16))
 
     def move(self):  #
@@ -51,7 +52,7 @@ class Snake():
                 elif event.key == pygame.K_ESCAPE:
                     sys.exit()
 
-    def hit_body(self):  #
+    def hit_body(self):
         for hit in self.body:
             if hit[0] == self.head[0] and hit[1] == self.head[1]:
                 print("You lose!")
@@ -77,7 +78,7 @@ class Snake():
         if self.head[1] < 22:
             self.head[1] += 20
 
-    def sprites(self):
+    def sprites(self): #
         if self.direction == "Right":
             screen.blit(head_right, (self.head[0], self.head[1]))
         if self.direction == "Left":
@@ -87,7 +88,7 @@ class Snake():
         if self.direction == "Down":
             screen.blit(head_down, (self.head[0], self.head[1]))
 
-    def eating_food(self, food_x, food_y):
+    def eating_food(self, food_x, food_y, line_to_win):
         if food_x < self.head[0] < food_x and food_y < self.head[1] < food_y + 20:
             # Score + 1
             self.Score += 1
@@ -96,17 +97,17 @@ class Snake():
             food_x = (random.randrange(0, 20) * 20) + 20
             food_y = (random.randrange(0, 20) * 20) + 20
             self.body.append(self.body[0])
-            self.line_to_win += 1
+            line_to_win += 1
 
             # Score line
 
 
 
-    def animation(self):  #
+    def animation(self):
         self.body.insert(0, list(self.head))
         self.body.pop()
 
-    def draw_body(self):  #
+    def draw_body(self):
         segment = []
         for segment in self.body:
             pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1], 16, 16))
@@ -126,12 +127,8 @@ class Food():
     def drawing_food(self):
         pygame.draw.rect(screen, RED, (self.food_x + 2, self.food_y + 2, 16, 16))
 
-    def score_to_win(self, l_to_win):
-        pygame.draw.rect(screen, BLUE, (20, 425,l_to_win , 15))
-        # if xNS get 100 points write "You win!" and exit the game
-        if l_to_win > 100:
-            print("You win!")
-            sys.exit()
+
+
 
 snake = Snake("pictures/Head/Head-right.png")
 food = Food((random.randrange(0, 20) * 20) + 20, (random.randrange(0, 20) * 20) + 20)
@@ -216,9 +213,12 @@ while not snake.done:
     # Drawing food
     food.drawing_food()
     # Condition of eating food
-    snake.eating_food(food.food_x, food.food_y)
-    food.score_to_win(snake.line_to_win)
-
+    snake.eating_food(food.food_x, food.food_y, line_to_win)
+    pygame.draw.rect(screen, BLUE, (20, 425, line_to_win, 15))
+    # if xNS get 100 points write "You win!" and exit the game
+    if line_to_win > 100:
+        print("You win!")
+        sys.exit()
     snake.sprites()
 
     # --- Go ahead and update the screen with what we've drawn.
