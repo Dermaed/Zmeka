@@ -8,6 +8,7 @@ import random
 BLACK = (0, 0, 0)
 WHITE = (255, 255, 255)
 GREEN = (0, 255, 0)
+YELLOW = (255, 255, 0)
 RED = (255, 0, 0)
 BLUE = (0, 0, 255)
 field1 = (105, 166, 52)
@@ -20,7 +21,59 @@ size = (440, 445)
 screen = pygame.display.set_mode(size)
 pygame.display.set_caption("My Game")
 
+# --------- Создание гл. Меню ---------
+class Menu():
+    def __init__(self, x, y, filename):
+        self.x = x
+        self.y = y
+        self.bitmap = pygame.image.load(filename)
+    def menu(self):
+        done = True
+        # -- Позиция кнопки Start --
+        # Верхний левый угл Start
+        start_pos = (120,170)
+        s_p_x = start_pos[0]
+        s_p_y = start_pos[1]
+        # Правый нижний угл Start
+        start_pos1 = (320,210)
+        s_p1_x = start_pos1[0]
+        s_p1_y = start_pos1[1]
+        # -- Позиция кнопки Quit --
+        quit_pos = (120, 250)
+        # Верхний левый угл Quit
+        q_p_x = quit_pos[0]
+        q_p_y = quit_pos[1]
+        quit_pos1 = (320, 291)
+        # Правый нижний угл Quit
+        q_p1_x = quit_pos1[0]
+        q_p1_y = quit_pos1[1]
+        # ---- Гл. Цикл гл. меню ----
+        while done:
+            for event in pygame.event.get():
+                if event.type == pygame.QUIT:
+                    done = False
+                    # Работа с мышкой
+                if event.type == pygame.MOUSEBUTTONDOWN:
+                    # Опознание позиции мышки
+                    pos = pygame.mouse.get_pos()
+                    posx = pos[0]
+                    posy = pos[1]
+                    # Проверка позиции мышки и кнопки Start
+                    if s_p_x < posx < s_p1_x and s_p_y < posy < s_p1_y:
+                        done = False
+                    elif q_p_x < posx < q_p1_x and q_p_y < posy < q_p1_y:
+                        sys.exit()
+                    # Выход из игры через кнопку ESCAPE
+                if event.type == pygame.KEYDOWN:
+                    if event.key == pygame.K_ESCAPE:
+                        sys.exit()
 
+            screen.blit(self.bitmap, (self.x, self.y))
+            pygame.display.flip()
+# Даём координаты и запускаем выше написаный код
+plunt = Menu(0,0,"pictures/Main Menu/main_menu.png" )
+# Применение цикла в классе
+plunt.menu()
 # Creating Snake
 class Snake():
     # Adding pictures for changing picture by direction
@@ -48,7 +101,7 @@ class Snake():
         self.detector = []
 
     def draw_head(self):
-        pygame.draw.rect(screen, GREEN, (self.head[0], self.head[1], 16, 16))
+        pygame.draw.rect(screen, YELLOW, (self.head[0], self.head[1], 16, 16))
 
     # Control of head and by the way body
     def move(self):
@@ -137,7 +190,7 @@ class Snake():
     def draw_body(self):
         self.segment = []
         for segment in self.body:
-            pygame.draw.rect(screen, GREEN, pygame.Rect(segment[0], segment[1], 16, 16))
+            pygame.draw.rect(screen, YELLOW, pygame.Rect(segment[0], segment[1], 16, 16))
 
 
 snake = Snake("pictures/Head/Head-right.png")
