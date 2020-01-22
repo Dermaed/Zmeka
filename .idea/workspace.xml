@@ -27,7 +27,7 @@
   <component name="PropertiesComponent">
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/../Пин-Понг/GitHub Pong/Ping-Pong/Ping-Pong.py" />
-    <property name="settings.editor.selected.configurable" value="vcs.Git" />
+    <property name="settings.editor.selected.configurable" value="com.jetbrains.python.configuration.PyActiveSdkModuleConfigurable" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -42,7 +42,7 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\DNS\AppData\Local\Programs\Python\Python38-32\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\DNS\AppData\Local\Programs\Python\Python37-32\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
@@ -63,12 +63,12 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\DNS\AppData\Local\Programs\Python\Python38-32\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\DNS\AppData\Local\Programs\Python\Python37-32\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Python\Игры\Моя Игра\Zmeka\ZMEKA.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/ZMEKA.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -84,12 +84,12 @@
       <envs>
         <env name="PYTHONUNBUFFERED" value="1" />
       </envs>
-      <option name="SDK_HOME" value="C:\Users\DNS\AppData\Local\Programs\Python\Python38-32\python.exe" />
+      <option name="SDK_HOME" value="C:\Users\DNS\AppData\Local\Programs\Python\Python37-32\python.exe" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$" />
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="SCRIPT_NAME" value="C:\Python\Игры\Моя Игра\Zmeka\Zmeka_OLD.py" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Zmeka_OLD.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -155,61 +155,61 @@
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="521" y="199" key="#Notifications/0.0.1858.1080@0.0.1858.1080" timestamp="1579551494194" />
-    <state x="383" y="199" width="1092" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579432350946">
+    <state x="383" y="199" width="1092" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog" timestamp="1579689791557">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="383" y="199" width="1092" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1579432350946" />
+    <state x="383" y="199" width="1092" height="706" key="#com.intellij.execution.impl.EditConfigurationsDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1579689791557" />
     <state x="748" y="448" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog" timestamp="1579428698870">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="748" y="448" key="#com.jetbrains.python.refactoring.move.PyMakeFunctionTopLevelDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1579428698870" />
-    <state x="709" y="299" key="FileChooserDialogImpl" timestamp="1579643870542">
+    <state x="709" y="299" key="FileChooserDialogImpl" timestamp="1579694825362">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="709" y="299" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1579643870542" />
-    <state width="1124" height="19" key="GridCell.Tab.0.bottom" timestamp="1579646242864">
+    <state x="709" y="299" key="FileChooserDialogImpl/0.0.1858.1080@0.0.1858.1080" timestamp="1579694825362" />
+    <state width="1837" height="264" key="GridCell.Tab.0.bottom" timestamp="1579723193412">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1124" height="19" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1579646242864" />
-    <state width="1124" height="19" key="GridCell.Tab.0.center" timestamp="1579646242864">
+    <state width="1837" height="264" key="GridCell.Tab.0.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1579723193412" />
+    <state width="1837" height="264" key="GridCell.Tab.0.center" timestamp="1579723193412">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1124" height="19" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1579646242864" />
-    <state width="1124" height="19" key="GridCell.Tab.0.left" timestamp="1579646242864">
+    <state width="1837" height="264" key="GridCell.Tab.0.center/0.0.1858.1080@0.0.1858.1080" timestamp="1579723193412" />
+    <state width="1837" height="264" key="GridCell.Tab.0.left" timestamp="1579723193412">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1124" height="19" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1579646242864" />
-    <state width="1124" height="19" key="GridCell.Tab.0.right" timestamp="1579646242864">
+    <state width="1837" height="264" key="GridCell.Tab.0.left/0.0.1858.1080@0.0.1858.1080" timestamp="1579723193412" />
+    <state width="1837" height="264" key="GridCell.Tab.0.right" timestamp="1579723193412">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1124" height="19" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1579646242864" />
-    <state width="1837" height="35" key="GridCell.Tab.1.bottom" timestamp="1579586457755">
+    <state width="1837" height="264" key="GridCell.Tab.0.right/0.0.1858.1080@0.0.1858.1080" timestamp="1579723193412" />
+    <state width="1837" height="238" key="GridCell.Tab.1.bottom" timestamp="1579719510672">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1837" height="35" key="GridCell.Tab.1.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1579586457755" />
-    <state width="1837" height="35" key="GridCell.Tab.1.center" timestamp="1579586457755">
+    <state width="1837" height="238" key="GridCell.Tab.1.bottom/0.0.1858.1080@0.0.1858.1080" timestamp="1579719510672" />
+    <state width="1837" height="238" key="GridCell.Tab.1.center" timestamp="1579719510672">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1837" height="35" key="GridCell.Tab.1.center/0.0.1858.1080@0.0.1858.1080" timestamp="1579586457755" />
-    <state width="1837" height="35" key="GridCell.Tab.1.left" timestamp="1579586457755">
+    <state width="1837" height="238" key="GridCell.Tab.1.center/0.0.1858.1080@0.0.1858.1080" timestamp="1579719510672" />
+    <state width="1837" height="238" key="GridCell.Tab.1.left" timestamp="1579719510672">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1837" height="35" key="GridCell.Tab.1.left/0.0.1858.1080@0.0.1858.1080" timestamp="1579586457755" />
-    <state width="1837" height="35" key="GridCell.Tab.1.right" timestamp="1579586457755">
+    <state width="1837" height="238" key="GridCell.Tab.1.left/0.0.1858.1080@0.0.1858.1080" timestamp="1579719510672" />
+    <state width="1837" height="238" key="GridCell.Tab.1.right" timestamp="1579719510672">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state width="1837" height="35" key="GridCell.Tab.1.right/0.0.1858.1080@0.0.1858.1080" timestamp="1579586457755" />
-    <state x="432" y="186" key="SettingsEditor" timestamp="1579551483889">
+    <state width="1837" height="238" key="GridCell.Tab.1.right/0.0.1858.1080@0.0.1858.1080" timestamp="1579719510672" />
+    <state x="416" y="259" key="SettingsEditor" timestamp="1579689868848">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="432" y="186" key="SettingsEditor/0.0.1858.1080@0.0.1858.1080" timestamp="1579551483889" />
+    <state x="416" y="259" key="SettingsEditor/0.0.1858.1080@0.0.1858.1080" timestamp="1579689868848" />
     <state x="637" y="369" key="com.intellij.ide.util.TipDialog" timestamp="1579464680593">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
     <state x="637" y="369" key="com.intellij.ide.util.TipDialog/0.0.1858.1080@0.0.1858.1080" timestamp="1579464680593" />
-    <state x="592" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1579619976087">
+    <state x="592" y="235" width="672" height="678" key="search.everywhere.popup" timestamp="1579699012344">
       <screen x="0" y="0" width="1858" height="1080" />
     </state>
-    <state x="592" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1858.1080@0.0.1858.1080" timestamp="1579619976087" />
+    <state x="592" y="235" width="672" height="678" key="search.everywhere.popup/0.0.1858.1080@0.0.1858.1080" timestamp="1579699012344" />
   </component>
 </project>
