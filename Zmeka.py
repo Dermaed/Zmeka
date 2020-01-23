@@ -51,9 +51,9 @@ class Menu():
         self.x = x
         self.y = y
         self.bitmap = pygame.image.load(filename)
-
+        self.done = True
     def menu(self):
-        done = True
+        self.done = True
         # -- Pos button Start --
         # Left-up angle of Start
         start_pos = (120, 170)
@@ -82,7 +82,7 @@ class Menu():
         c_p1_x = control1[0]
         c_p1_y = control1[1]
         # ---- Main loop for main menu ----
-        while done:
+        while self.done:
             for event in pygame.event.get():
                 if event.type == pygame.QUIT:
                     done = False
@@ -105,7 +105,7 @@ class Menu():
                         sys.exit()
                     # Start game when you press SPACE
                     elif event.key == pygame.K_SPACE:
-                        done = False
+                        self.done = False
             screen.blit(self.bitmap, (self.x, self.y))
             pygame.display.flip()
 
@@ -163,10 +163,13 @@ class Snake():
                 elif event.key == pygame.K_DOWN and self.direction != "Up":
                     self.direction = "Down"
                 elif event.key == pygame.K_ESCAPE:
-                    sys.exit()
+                    self.time_stop = True
+                    plunt.done = True
+                    plunt.menu()
                 # when you press SPACE game will start
                 elif event.key == pygame.K_SPACE:
                     self.time_stop = False
+
                 elif event.key == pygame.K_r:
                     self.head = [122, 202]
                     self.body = [[122, 202], [102, 202], [82, 202]]
